@@ -15,19 +15,39 @@ class Bot:
             print(f"{self.client.user} has connected to Discord!")
             
             self.guild = self.client.get_guild(746110570415128707)
+            self.text_channels = self.guild.text_channels
             self.members = self.guild.members
             
+            #create message count dictionary
+            self.message_count = {}
+            for member in self.members:
+                message_count[member] = 0
+                
+            #activity roles
             self.activity_roles = {}
             self.activity_roles["somewhat_active"] = get(self.guild.roles, name="Somewhat Active")
             self.activity_roles["active"] = get(self.guild.roles, name="Active")
             self.activity_roles["very_active"] = get(self.guild.roles, name="very active")
             
-            #iterate through members; first, remove all previous activity roles; second, traverse their message history and count their messages
+            #remove previous activity roles
             for member in self.members:
                 await member.remove_roles(self.activity_roles["somewhat_active"], self.activity_roles["active"], self.activity_roles["very_active"])
-                
-                message_counter = 0
-                for message in member.history
+            
+            #count messages
+            #WIP WIP WIP WIP WIP
+            for channel in guild.text_channels:
+                async for message in channel.history(limit=None):
+                    if message.author == client.user:
+                        
+                        
+            #assign roles based on number of messages
+            for member in self.members:
+                if message_count[member] >= 100 and message_count[member] < 500:
+                    member.add_roles(self.activity_roles["somewhat_active"])
+                elif message_count[member] >= 500 and message_count[member] < 1000:
+                    member.add_roles(self.activity_roles["active"])
+                elif message_count[member] >= 1000:
+                    member.add_roles(self.activity_roles["very_active"])
         
         #literally do nothing
         @self.client.event
