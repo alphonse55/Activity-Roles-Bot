@@ -34,7 +34,7 @@ async def on_ready():
 
         counter = 0
         for channel in member.guild.text_channels:
-            async for message in channel.history(limit=1000):
+            async for message in channel.history:
                 if message.author == member:
                     counter += 1
         users[member] = counter
