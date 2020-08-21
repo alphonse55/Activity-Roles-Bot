@@ -1,11 +1,11 @@
 # Activity-Roles-Bot
-load token
-instantiate the bot
+- load token
+- instantiate the bot
 
 in on_ready():
-get the guild, channels, and members_who_aren't_bots into variables
-create the message_count dict for members who are not bots
-put the activity roles into a variable
+- get the guild, channels, and members_who_aren't_bots into variables
+- create the message_count dict for members who are not bots
+- put the activity roles into a variable
 
 ]load numbers into message_count dict from a file
 load last save time](encapsulate into a function)
