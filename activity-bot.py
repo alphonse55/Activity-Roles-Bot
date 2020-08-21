@@ -30,15 +30,12 @@ def change_roles(member, counter):
 
 @client.event
 async def on_ready():
-    for member in client.get_guild(746110570415128707).members:
-
-        counter = 0
         for channel in member.guild.text_channels:
             async for message in channel.history:
                 if message.author == member:
-                    counter += 1
-        users[member] = counter
-        change_roles(member, counter)
+                    users[member]+=1
+        for members in client.guild.members:
+            change_roles(member, counter)
 
     print("Done")
 
