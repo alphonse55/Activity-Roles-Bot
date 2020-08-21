@@ -9,7 +9,7 @@ active = get(member.guild.roles, name="Active")
 very_active = get(member.guild.roles, name="very active")
 
 
-def change_roles():
+def change_roles(member, counter):
 
     if counter >= 100 and counter < 500:
         await member.add_role(somewhat_active)
@@ -33,14 +33,14 @@ async def on_ready():
                 if message.author == member:
                     counter += 1
         users[member] = counter
-        change_roles(member)
+        change_roles(member, counter)
 
     print("Done")
 
 
 async def on_message(message):
     users[message.author] += 1
-    change_roles(message.author)
+    change_roles(message.author, counter)
 
 
 client.run("token")
