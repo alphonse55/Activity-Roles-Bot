@@ -5,8 +5,8 @@ in on_ready():
 get the guild, channels, and members_who_aren't_bots into variables
 create the message_count dict for members who are not bots
 
-load numbers into message_count dict from a file
-load last save time
+]load numbers into message_count dict from a file
+load last save time](encapsulate into a function)
 
 iterate through the channels, iterating through the history from the last save time, and add to the members' counts
 
