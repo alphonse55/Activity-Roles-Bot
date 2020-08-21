@@ -5,15 +5,20 @@ from dotenv import load_dotenv
 class Bot:
     #init bot
     def __init__(self):
+        #load the token from the .env file
+        #.env file should have one line that looks exactly like this, no quotes or anything (but obviously without the #):
+        #DISCORD_TOKEN=the token
         load_dotenv()
         TOKEN = os.getenv('DISCORD_TOKEN')
         self.client = discord.Client()
 
-        #get the channels and users and stuff
+        #basically all the counting and stuff is in here
         @self.client.event
         async def on_ready():
+            #print startup message
             print(f"{self.client.user} has connected to Discord!")
             
+            #setup
             self.guild = self.client.get_guild(746110570415128707)
             self.text_channels = self.guild.text_channels
             self.members = self.guild.members
@@ -21,7 +26,8 @@ class Bot:
             #create message count dictionary
             self.message_count = {}
             for member in self.members:
-                message_count[member] = 0
+                if member.bot = false:
+                    message_count[member] = 0
                 
             #activity roles
             self.activity_roles = {}
@@ -52,7 +58,7 @@ class Bot:
         #literally do nothing
         @self.client.event
         async def on_message(message):
-            #message.channel.send(response)
+            #message.channel.send()
         
         #run the bot
         self.client.run(TOKEN)
