@@ -1,5 +1,6 @@
 import discord
 from discord.utils import get
+from dotenv import load_dotenv
 
 client = discord.Client()
 users = {}
@@ -7,6 +8,10 @@ users = {}
 somewhat_active = get(member.guild.roles, name="Somewhat Active")
 active = get(member.guild.roles, name="Active")
 very_active = get(member.guild.roles, name="very active")
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+self.client = discord.Client()
 
 
 def change_roles(member, counter):
@@ -43,7 +48,7 @@ async def on_message(message):
     change_roles(message.author, counter)
 
 
-client.run("token")
+client.run(TOKEN)
 
 
 # bloo = get(member.guild.roles, name="bloo")
