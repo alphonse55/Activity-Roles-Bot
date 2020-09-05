@@ -6,18 +6,6 @@ from datetime import datetime, date
 
 client = discord.Client()
 
-lol_date = datetime(2020, 7, 7)
-
-
-async def lol_channel():
-    channel = client.get_channel(708982721485078548)
-    async for message in channel.history(after=lol_date, limit=None):
-        if message.content != "lol":
-            await message.delete()
-            print(
-                f"deleted message: {message.content} from {message.author} sent the {message.created_at}"
-            )
-
 
 with open("date.csv", "r") as date_file:
     csv_reader = csv.reader(date_file)
@@ -84,7 +72,7 @@ async def write_date():
 
 @client.event
 async def on_ready():
-    Guild = client.get_guild(708982504690024490)
+    Guild = client.get_guild(server_ID)
     print("BOT is now online!")
     await lol_channel()
     somewhat_active = get(Guild.roles, name="Somewhat Active")
@@ -148,4 +136,4 @@ async def on_ready():
     await client.logout()
 
 
-client.run("NzQ2MTA5NTg5ODI0NDcxMjAw.Xz7itA.4f-FuUC_OxsiA_wyAoXnispbLag")
+client.run("token")
