@@ -1,20 +1,16 @@
 # Activity-Roles-Bot
-- load token
-- instantiate the bot
 
-in on_ready():
-- get the guild, channels, and members_who_aren't_bots into variables
-- create the message_count dict for members who are not bots
-- put the activity roles into a variable
+>DISCLAIMER: This bot is written very badly, since it was my first project with discord.py and was designed to work as fast as possible.
 
-- load numbers into message_count dict from a file (encapsulate into a function)
-- load last save time (encapsulate into a function)
+Anyways, here is what it does:
 
-- iterate through the channels, iterating through the history from the last save time, and add to the members' counts
+The general goal was to actualize the roles of the server members depending on the number of messages they had. 
+To do this, we wanted to go through all messages and increment the message counter of the author of that message, and later check if they had earned a new role.
 
-- remove all activity roles from the members who are not bots
-- add activity roles where appropriate
+We soon realised however, that it was API abuse to go though the whole channel history everytime we ran the bot, so we implemented a database with the user ID and the corresponding message counter.
 
-in on_message():
--add one to the count of the member
--if a change should happen to the member's role, remove the previous activity roles and then add the new one
+When the bot starts, the database gets transformed into a dictionary and the last saved date (in another csv file) gets tranformed in a datetime object.
+It then goes through every messages after that date and increments the counters of the authors by the number of new messsages they wrote and calls a function called 'change_roles' if the current role doesn't correspond to the counter. 
+This function actualizes the role of the user.
+
+If you want to use it for your server, just create a new discord application [here](https://discord.com/developers/applications) and put your token in the last file.
