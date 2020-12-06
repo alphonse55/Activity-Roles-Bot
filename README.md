@@ -1,4 +1,4 @@
-# Activity-Roles-Bot
+# ActivityRolesBot
 
 >DISCLAIMER: This bot is not well written at all, since it was my first project with discord.py.
 
